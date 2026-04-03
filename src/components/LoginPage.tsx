@@ -44,6 +44,11 @@ export default function LoginPage({ onBack }: { onBack?: () => void }) {
     <div className="min-h-screen flex items-center justify-center bg-background p-4 animate-fade-in">
       <div className="w-full max-w-md space-y-8">
         {/* Header */}
+        {onBack && (
+          <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to home
+          </button>
+        )}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-2">
             <Shield className="w-8 h-8 text-primary" />
