@@ -35,8 +35,8 @@ export default function VotingPage() {
 
   if (voted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <div className="text-center space-y-6 max-w-md">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4 animate-fade-in">
+        <div className="text-center space-y-6 max-w-md animate-scale-in">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10">
             <CheckCircle2 className="w-10 h-10 text-accent" />
           </div>
@@ -57,7 +57,7 @@ export default function VotingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-fade-in">
       {/* Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -81,14 +81,15 @@ export default function VotingPage() {
         </div>
 
         <div className="grid gap-3">
-          {CANDIDATES.map((candidate) => (
+          {CANDIDATES.map((candidate, index) => (
             <Card
               key={candidate.id}
-              className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+              className={`cursor-pointer transition-all duration-200 hover:shadow-md animate-slide-up ${
                 selected === candidate.id
                   ? "ring-2 ring-primary shadow-md"
                   : "hover:border-primary/30"
               }`}
+              style={{ animationDelay: `${index * 80}ms`, animationFillMode: "both" }}
               onClick={() => setSelected(candidate.id)}
             >
               <CardContent className="flex items-center gap-4 p-5">
