@@ -35,8 +35,8 @@ export default function VotingPage() {
 
   if (voted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <div className="text-center space-y-6 max-w-md">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4 animate-fade-in">
+        <div className="text-center space-y-6 max-w-md animate-scale-in">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10">
             <CheckCircle2 className="w-10 h-10 text-accent" />
           </div>
