@@ -114,7 +114,7 @@ export default function VotingPage() {
           <Button
             size="lg"
             disabled={!selected || submitting}
-            onClick={handleVote}
+            onClick={() => setConfirmOpen(true)}
             className="gap-2 px-8"
           >
             <Vote className="w-5 h-5" />
@@ -125,6 +125,43 @@ export default function VotingPage() {
           </p>
         </div>
       </main>
+
+      <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Your Vote</AlertDialogTitle>
+            <AlertDialogDescription asChild>
+              <div className="space-y-4">
+                <p>You are about to cast your vote for:</p>
+                {selected && (() => {
+                  const candidate = CANDIDATES.find((c) => c.id === selected)!;
+                  return (
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-muted">
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
+                        style={{ backgroundColor: candidate.color, color: "white" }}
+                      >
+                        {candidate.name.split(" ").map((n) => n[0]).join("")}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">{candidate.name}</p>
+                        <p className="text-sm text-muted-foreground">{candidate.party}</p>
+                      </div>
+                    </div>
+                  );
+                })()}
+                <p className="text-sm">This action cannot be undone. Your vote will be encrypted and submitted.</p>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Go Back</AlertDialogCancel>
+            <AlertDialogAction onClick={handleVote} disabled={submitting}>
+              {submitting ? "Submitting..." : "Confirm & Encrypt Vote"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
