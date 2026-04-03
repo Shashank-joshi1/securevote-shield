@@ -14,6 +14,7 @@ export default function VotingPage() {
   const [selected, setSelected] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [voted, setVoted] = useState(() => hasUserVoted(user!.id));
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleVote = async () => {
     if (!selected || !user) return;
