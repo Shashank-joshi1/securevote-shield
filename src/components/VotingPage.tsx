@@ -81,14 +81,15 @@ export default function VotingPage() {
         </div>
 
         <div className="grid gap-3">
-          {CANDIDATES.map((candidate) => (
+          {CANDIDATES.map((candidate, index) => (
             <Card
               key={candidate.id}
-              className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+              className={`cursor-pointer transition-all duration-200 hover:shadow-md animate-slide-up ${
                 selected === candidate.id
                   ? "ring-2 ring-primary shadow-md"
                   : "hover:border-primary/30"
               }`}
+              style={{ animationDelay: `${index * 80}ms`, animationFillMode: "both" }}
               onClick={() => setSelected(candidate.id)}
             >
               <CardContent className="flex items-center gap-4 p-5">
